@@ -79,7 +79,7 @@ unsigned _stdcall CTCPClient::send_proc(void *accp)
 /**
 * 启动UDP服务
 */
-int CTCPClient::startudpserver()
+int CTCPClient::starttcpserver()
 {
 	// 套接字初始化
 	WSADATA			wsd;

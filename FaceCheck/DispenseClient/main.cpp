@@ -7,6 +7,6 @@ int main(int argc, char *argv[])
 	udpclient.startudpserver();
 
 	/*CTCPClient tcpclient;
-	tcpclient.startudpserver();*/
+	tcpclient.starttcpserver();*/
 	return 0;
 }

@@ -10,11 +10,9 @@ public:
 	int startudpserver();
 
 public:
-	static int SafeRecv(SOCKET sock, char *buffer, unsigned sum);
+	static int SafeSend(SOCKET sock, const char *buffer, unsigned len);
 
-	static unsigned  __stdcall recv_client(void *accp);
-
-	static unsigned __stdcall MangerClient(void *pclient);
+	static unsigned  __stdcall send_proc(void *accp);
 
 protected:
 

@@ -6,7 +6,7 @@ public:
 	CTCPClient();
 	~CTCPClient();
 
-	int startudpserver();
+	int starttcpserver();
 
 public:
 	static int SafeSend(SOCKET sock, const char *buffer, unsigned len);
