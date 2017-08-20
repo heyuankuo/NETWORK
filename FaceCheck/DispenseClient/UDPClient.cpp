@@ -98,8 +98,10 @@ int CUDPClient::startudpserver()
 		return  -1;
 	}
 
+	int err = 0;
+
 	// 指定工作方式
-	WSAEVENT event_server = ::WSACreateEvent();
+	/*WSAEVENT event_server = ::WSACreateEvent();
 	int err = WSAEventSelect(sock_server, event_server, FD_READ | FD_WRITE);
 	if (SOCKET_ERROR == err)
 	{
@@ -107,30 +109,33 @@ int CUDPClient::startudpserver()
 		closesocket(sock_server);
 		WSACleanup();
 		return -1;
-	}
+	}*/
 
 	// 服务器套接字地址配置
 	SOCKADDR_IN		addr_server;
 	addr_server.sin_family = AF_INET;
 	addr_server.sin_port = htons(8888);
-	addr_server.sin_addr.s_addr = inet_addr("60.205.215.87");
+	// addr_server.sin_addr.s_addr = inet_addr("60.205.215.87");
+	addr_server.sin_addr.s_addr = inet_addr("192.168.48.129");
 
-	err = bind(sock_server, (sockaddr *)&addr_server, sizeof addr_server);
-	if (SOCKET_ERROR == err)
+	for (int i = 0; i < 500; ++i)
 	{
-		err = GetLastError();
-		if (10035 == err)
+		char *buff = "hello world";
+		err = sendto(sock_server, buff, strlen(buff), 0, (sockaddr *)&addr_server, sizeof(sockaddr));
+		if (SOCKET_ERROR == err)
 		{
+			err = WSAGetLastError( );
+			trace("发送失败");
+			closesocket(sock_server);
+			WSACleanup();
+			return -1;
 		}
-		else
-		{
-			trace("绑定失败");
-		}
+		Sleep( 500 );
 	}
 
 	CAccepter accp;
 	accp.m_psock = &sock_server;
-	accp.m_pevent = &event_server;
+	// accp.m_pevent = &event_server;
 
 	HANDLE h_sendThread = (HANDLE)_beginthreadex(NULL, NULL, send_proc, (void *)&accp, 0, NULL);
 
