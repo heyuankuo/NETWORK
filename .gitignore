@@ -1,0 +1,10 @@
+*.log
+/FaceCheck/.vs/*
+/*/Debug/*
+/*/Release/*
+/*/*/Debug/*
+/*/*/Release/*
+*.exe
+*.dll
+*.db
+*.opendb
