@@ -114,9 +114,9 @@ int CUDPClient::startudpserver()
 	// ·şÎñÆ÷Ì×½Ó×ÖµØÖ·ÅäÖÃ
 	SOCKADDR_IN		addr_server;
 	addr_server.sin_family = AF_INET;
-	addr_server.sin_port = htons(8888);
-	// addr_server.sin_addr.s_addr = inet_addr("60.205.215.87");
-	addr_server.sin_addr.s_addr = inet_addr("192.168.48.129");
+	addr_server.sin_port = htons(8811);
+	addr_server.sin_addr.s_addr = inet_addr("60.205.215.87");
+	// addr_server.sin_addr.s_addr = inet_addr("192.168.48.129");
 
 	for (int i = 0; i < 500; ++i)
 	{
